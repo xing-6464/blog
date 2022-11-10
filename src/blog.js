@@ -23,7 +23,7 @@ const handleBlogRouter = (req, res) => {
   }
 
   // 更新一篇博客
-  if (method === 'POST' && req.path === '/api/blog/updata') {
+  if (method === 'POST' && req.path === '/api/blog/update') {
     return {
       msg: '更新博客接口'
     }
