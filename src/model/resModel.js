@@ -8,6 +8,7 @@ class BaseModel {
 
     if (data) {
       this.data = date
+      this.message = null
     }
 
     if (message) {
@@ -19,7 +20,7 @@ class BaseModel {
 class SuccessModel extends BaseModel {
   constructor (data, message) {
     super(data, message)
-    this.error = 0
+    this.errno = 0
   }
 }
 
