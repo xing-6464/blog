@@ -7,8 +7,7 @@ class BaseModel {
     }
 
     if (data) {
-      this.data = date
-      this.message = null
+      this.data = data
     }
 
     if (message) {
