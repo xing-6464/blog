@@ -4,7 +4,7 @@ const handleBlogRouter = require('./src/router/blog')
 const handleUserRouter = require('./src/router/user')
 
 // 用于处理 post data
-const getPostData = (req) => {
+const getPostData = req => {
   const promise = new Promise((resolve, reject) => {
     if (req.method !== 'POST') {
       resolve({})
@@ -17,7 +17,7 @@ const getPostData = (req) => {
     }
 
     let postData = ''
-    req.on('data', (chunk) => {
+    req.on('data', chunk => {
       postData += chunk.toString()
     })
     req.on('end', () => {
@@ -43,22 +43,26 @@ const serverHandle = (req, res) => {
   req.query = qs.parse(url.split('?')[1])
 
   // 处理post data
-  getPostData(req).then((postData) => {
+  getPostData(req).then(postData => {
     req.body = postData
 
     // 处理blog路由
     const blogResult = handleBlogRouter(req, res)
     if (blogResult) {
-      blogResult.then((blogData) => {
+      blogResult.then(blogData => {
         res.end(JSON.stringify(blogData))
       })
+
       return
     }
 
     // 处理user路由
-    const userData = handleUserRouter(req, res)
-    if (userData) {
-      res.end(JSON.stringify(userData))
+    const userResult = handleUserRouter(req, res)
+    if (userResult) {
+      userResult.then(userData => {
+        res.end(JSON.stringify(userData))
+      })
+
       return
     }
 
