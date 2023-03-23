@@ -3,6 +3,7 @@ const {
   getDetail,
   newBlog,
   updateBlog,
+  delBlog,
 } = require('../controller/blog')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 
@@ -34,33 +35,37 @@ const handleBlogRouter = (req, res) => {
     const author = 'zhangsan' // todo 假数据
     req.body.author = author
     const result = newBlog(req.body)
+
     return result.then(data => {
       return new SuccessModel(data)
     })
-
-    return new SuccessModel(data)
   }
 
   // 更新一篇博客
   if (method === 'POST' && req.path === '/api/blog/update') {
     const result = updateBlog(id, req.body)
 
-    if (result) {
-      return new SuccessModel()
-    } else {
-      return new ErrorModel('更新博客失败')
-    }
+    return result.then(val => {
+      if (val) {
+        return new SuccessModel()
+      } else {
+        return new ErrorModel('更新博客失败')
+      }
+    })
   }
 
   // 删除博客
   if (method === 'POST' && req.path === '/api/blog/del') {
-    const result = delBlog(id)
+    const author = 'zhangsan'
+    const result = delBlog(id, author)
 
-    if (result) {
-      return new SuccessModel()
-    } else {
-      return new ErrorModel('删除博客失败')
-    }
+    return result.then(val => {
+      if (result) {
+        return new SuccessModel()
+      } else {
+        return new ErrorModel('删除博客失败')
+      }
+    })
   }
 }
 
