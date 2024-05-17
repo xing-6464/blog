@@ -1,10 +1,8 @@
-const mysql = require('mysql')
 const { exec } = require('../db/mysql')
 
 const getList = (author, keyword) => {
   let sql = `select * from blogs where 1=1 `
   if (author) {
-    console.info(author)
     sql += `and author='${author}' `
   }
   if (keyword) {
@@ -22,7 +20,7 @@ const getDetail = id => {
 }
 
 const newBlog = (blogData = {}) => {
-  // blogData 是一个博客对象，包含title content 属性
+  // blogData 是一个博客对象，包含title content, author 属性
   const title = blogData.title
   const content = blogData.content
   const author = blogData.author

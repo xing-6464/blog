@@ -1,4 +1,4 @@
-const mysql = require('mysql')
+const mysql = require('mysql2')
 const { MYSQL_CONF } = require('../conf/db')
 
 // 创建链接对象
@@ -20,6 +20,8 @@ function exec(sql) {
 
   return promise
 }
+
+// con.end()
 
 module.exports = {
   exec,
