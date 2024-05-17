@@ -2,43 +2,38 @@ const redis = require('redis')
 const { REDIS_CONF } = require('../conf/db')
 
 const redisClient = redis.createClient(REDIS_CONF.port, REDIS_CONF.host)
-redisClient
-  .connect()
-  .then(() => {
-    console.log('redis connected')
-  })
-  .catch(err => {
-    console.log(err)
-  })
+!(async () => {
+  redisClient
+    .connect()
+    .then(() => {
+      console.log('redis connected')
+    })
+    .catch(console.error)
+})()
 
 async function set(key, value) {
-  if (typeof value !== 'object') {
-    value = JSON.stringify(value)
+  let objVal
+  if (typeof value === 'object') {
+    objVal = JSON.stringify(value)
+  } else {
+    objVal = value
   }
-  return await redisClient.set(key, value)
+  return await redisClient.set(key, objVal)
 }
 
-function get(key) {
-  const promise = new Promise((resolve, reject) => {
-    redisClient.get(key, (err, val) => {
-      if (err) {
-        reject(err)
-        return
-      }
-      if (val == null) {
-        resolve(null)
-        return
-      }
+async function get(key) {
+  try {
+    let val = await redisClient.get(key)
+    if (val === null) return val
 
-      try {
-        resolve(JSON.parse(val))
-      } catch (e) {
-        resolve(val)
-      }
-    })
-  })
+    try {
+      val = JSON.parse(val)
+    } catch (e) {}
 
-  return promise
+    return val
+  } catch (e) {
+    throw e
+  }
 }
 
 module.exports = {
