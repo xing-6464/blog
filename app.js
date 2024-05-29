@@ -1,6 +1,7 @@
 const qs = require('qs')
 
 const { get, set } = require('./src/db/redis')
+const { access } = require('./src/util/log')
 const handleBlogRouter = require('./src/router/blog')
 const handleUserRouter = require('./src/router/user')
 
@@ -43,6 +44,13 @@ const getPostData = req => {
 }
 
 const serverHandle = (req, res) => {
+  // 记录日志
+  access(
+    `${req.method} --- ${req.url} --- ${
+      req.headers['user-agent']
+    } --- ${Date.now()}`
+  )
+
   res.setHeader('Content-type', 'application/json')
 
   // 获取url
