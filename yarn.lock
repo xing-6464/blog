@@ -109,6 +109,11 @@ cluster-key-slot@1.1.2:
   resolved "https://registry.npmmirror.com/cluster-key-slot/-/cluster-key-slot-1.1.2.tgz"
   integrity sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==
 
+commander@^2.20.3:
+  version "2.20.3"
+  resolved "https://registry.npmmirror.com/commander/-/commander-2.20.3.tgz"
+  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.npmmirror.com/concat-map/-/concat-map-0.0.1.tgz"
@@ -129,6 +134,11 @@ cross-spawn@^7.0.1:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
+
+cssfilter@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.npmmirror.com/cssfilter/-/cssfilter-0.0.10.tgz"
+  integrity sha512-FAaLDaplstoRsDR8XGYH51znUN0UY7nMc6Z9/fvE8EXGwvJE9hu7W2vHwx1+bd6gCYnln9nLbzxFTrcO9YQDZw==
 
 debug@^3.2.7:
   version "3.2.7"
@@ -457,6 +467,14 @@ which@^2.0.1:
   integrity sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==
   dependencies:
     isexe "^2.0.0"
+
+xss@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.npmmirror.com/xss/-/xss-1.0.15.tgz"
+  integrity sha512-FVdlVVC67WOIPvfOwhoMETV72f6GbW7aOabBC3WxN/oUdoEMDyLz4OgRv5/gck2ZeNqEQu+Tb0kloovXOfpYVg==
+  dependencies:
+    commander "^2.20.3"
+    cssfilter "0.0.10"
 
 yallist@4.0.0:
   version "4.0.0"
